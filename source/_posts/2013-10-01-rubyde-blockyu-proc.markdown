@@ -3,7 +3,7 @@ layout: post
 title: "Ruby中Block,Proc,Lambda区别(译)"
 date: 2013-10-01 22:52
 comments: true
-categories: 
+categories: [工具]
 ---
 
 ###block,proc,lambda是什么？

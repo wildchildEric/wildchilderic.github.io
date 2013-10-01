@@ -3,7 +3,7 @@ layout: post
 title: "XCode 常用快捷键"
 date: 2013-10-01 19:49
 comments: true
-categories: 
+categories: [工具]
 ---
 
 `键盘符号映射`|&nbsp;

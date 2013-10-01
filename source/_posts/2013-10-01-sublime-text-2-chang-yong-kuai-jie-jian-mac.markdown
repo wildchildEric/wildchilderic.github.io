@@ -3,7 +3,7 @@ layout: post
 title: "Sublime Text 2 常用快捷键(Mac)"
 date: 2013-10-01 19:54
 comments: true
-categories: 
+categories: [工具]
 ---
 
 `键盘符号映射`|&nbsp;
