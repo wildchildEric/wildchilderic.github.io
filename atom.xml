@@ -4,7 +4,7 @@
   <title><![CDATA[WildChild's Blog]]></title>
   <link href="http://wildchildEric.github.io/atom.xml" rel="self"/>
   <link href="http://wildchildEric.github.io/"/>
-  <updated>2013-10-01T19:42:19+08:00</updated>
+  <updated>2013-10-01T19:52:44+08:00</updated>
   <id>http://wildchildEric.github.io/</id>
   <author>
     <name><![CDATA[Eric Li]]></name>
@@ -12,5 +12,114 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[XCode 常用快捷键]]></title>
+    <link href="http://wildchildEric.github.io/blog/2013/10/01/xcode-chang-yong-kuai-jie-jian/"/>
+    <updated>2013-10-01T19:49:00+08:00</updated>
+    <id>http://wildchildEric.github.io/blog/2013/10/01/xcode-chang-yong-kuai-jie-jian</id>
+    <content type="html"><![CDATA[<table>
+<thead>
+<tr>
+<th align="left"><code>键盘符号映射</code></th>
+<th align="left">&nbsp;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">⌘</td>
+<td align="left">Command 键</td>
+</tr>
+<tr>
+<td align="left">⇧</td>
+<td align="left">Shift 键</td>
+</tr>
+<tr>
+<td align="left">⌃</td>
+<td align="left">Control 键</td>
+</tr>
+<tr>
+<td align="left">⌥</td>
+<td align="left">Option 键</td>
+</tr>
+</tbody>
+</table>
+
+
+<p></br></p>
+
+<table>
+<thead>
+<tr>
+<th align="left">&nbsp;</th>
+<th align="left">&nbsp;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">⌘ arrow up/down</td>
+<td align="left">切换 当前文件头文件和实现文件</td>
+</tr>
+<tr>
+<td align="left">⌃⌘ arrow left/right</td>
+<td align="left">切换历史上/下一个文件</td>
+</tr>
+<tr>
+<td align="left">⌘B/R</td>
+<td align="left">编译/运行</td>
+</tr>
+<tr>
+<td align="left">⌘   left click  on word</td>
+<td align="left">可以在 方法的声明/实现, 变量的定义, 类的定义中跳转|</td>
+</tr>
+<tr>
+<td align="left">⌥   left click  on word</td>
+<td align="left">对当前内容做快速帮助</td>
+</tr>
+<tr>
+<td align="left">⇧⌘Y</td>
+<td align="left">显示 debug工作区</td>
+</tr>
+<tr>
+<td align="left">⌘f/⌥⌘f</td>
+<td align="left">搜索/替换  (搜索后⌘G可以跳到下一个结果)</td>
+</tr>
+<tr>
+<td align="left">⇧⌘F</td>
+<td align="left">全局搜索</td>
+</tr>
+<tr>
+<td align="left">(esc)</td>
+<td align="left">自动完成菜单</td>
+</tr>
+<tr>
+<td align="left">⇧⌘o</td>
+<td align="left">快速定位文件</td>
+</tr>
+<tr>
+<td align="left">⇧⌘j</td>
+<td align="left">在项目导航中显示当前文件</td>
+</tr>
+<tr>
+<td align="left">⌥ click项目导航中的文件</td>
+<td align="left">可以在辅助编辑器里打开该文件, 方便同时查看多个源文件</td>
+</tr>
+<tr>
+<td align="left">⌘L</td>
+<td align="left">定为到文件的指定行</td>
+</tr>
+<tr>
+<td align="left">⇧⌘L</td>
+<td align="left">跳到光标所在位置</td>
+</tr>
+<tr>
+<td align="left">⌃i</td>
+<td align="left">对选中文字 重新格式化缩进</td>
+</tr>
+</tbody>
+</table>
+
+]]></content>
+  </entry>
   
 </feed>
