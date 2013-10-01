@@ -4,7 +4,7 @@
   <title><![CDATA[WildChild's Blog]]></title>
   <link href="http://wildchildEric.github.io/atom.xml" rel="self"/>
   <link href="http://wildchildEric.github.io/"/>
-  <updated>2013-10-02T01:56:05+08:00</updated>
+  <updated>2013-10-02T02:29:05+08:00</updated>
   <id>http://wildchildEric.github.io/</id>
   <author>
     <name><![CDATA[Eric Li]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Ruby中Block,Proc,Lambda区别（译）]]></title>
+    <title type="html"><![CDATA[Ruby中Block,Proc,Lambda区别(译)]]></title>
     <link href="http://wildchildEric.github.io/blog/2013/10/01/rubyde-blockyu-proc/"/>
     <updated>2013-10-01T22:52:00+08:00</updated>
     <id>http://wildchildEric.github.io/blog/2013/10/01/rubyde-blockyu-proc</id>
