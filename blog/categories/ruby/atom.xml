@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby | WildChild's Blog]]></title>
   <link href="http://wildchildEric.github.io/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://wildchildEric.github.io/"/>
-  <updated>2013-10-02T02:31:50+08:00</updated>
+  <updated>2013-10-02T03:31:42+08:00</updated>
   <id>http://wildchildEric.github.io/</id>
   <author>
     <name><![CDATA[Eric Li]]></name>
@@ -146,7 +146,7 @@ end</p>
 <p>proc_test                 # calling proc_test prints nothing
 ```</p>
 
-<h3>然而什么是闭包（closure）？</h3>
+<h3>那么什么是闭包（closure）？</h3>
 
 <p>行话：带有引用环境的函数或者函数引用。不同于单纯的函数，闭包允许访问非本地变量，甚至在其作用域外。-维基百科
 </br>
