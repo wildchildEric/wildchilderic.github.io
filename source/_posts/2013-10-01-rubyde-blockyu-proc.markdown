@@ -157,7 +157,7 @@ sqsum(x,y) = x*x + y*y  #<-- normal function
 一般而言，在编程中，术语lambda指匿名函数，这些匿名函数在一些编程语言中很常见且是显式的（如javascript），而在另外一些语言中则比较隐秘（如Ruby）。
 
 ###背景部分2：Proc名字的由来
-Proc是procedure（程序）的缩写，既是用来执行特定任务而被打包成单元的一组指令。在不同的语言中，可能被称作function，routine，method或者unit。他们在一个程序中通常会被调用多次。
+Proc是procedure（程序,过程）的缩写，既是用来执行特定任务而被打包成单元的一组指令。在不同的语言中，可能被称作function，routine，method或者unit。他们在一个程序中通常会被调用多次。
 
 ###区别总结
 
