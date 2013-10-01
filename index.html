@@ -9,12 +9,26 @@
   <meta name="author" content="Eric Li">
 
   
-  <meta name="description" content="键盘符号映射
-&nbsp; ⌘
-Command 键 ⇧
-Shift 键 ⌃
-Control 键 ⌥
-Option 键 打开/前往 &nbsp; ⌘T 前往文件 ⌘⌃P 前往项目 ⌘R 前往 method ⌘⇧P 命令提示 ⌃G 前往行 ⌘KB 开关侧栏 ⌃ ` python 控制台 ⌘⇧N &hellip;">
+  <meta name="description" content="block,proc,lambda是什么？ 行话：闭包在Ruby中的体现。 白话：我们想复用的代码的组织方式。 Block Examples1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+[1,2,3].each { |x| puts x*2 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -70,6 +84,306 @@ Option 键 打开/前往 &nbsp; ⌘T 前往文件 ⌘⌃P 前往项目 ⌘R 前�
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/10/01/rubyde-blockyu-proc/">Ruby中Block,Proc,Lambda区别（译）</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-01T22:52:00+08:00" pubdate data-updated="true">Oct 1<span>st</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h3>block,proc,lambda是什么？</h3>
+
+<p>行话：闭包在Ruby中的体现。
+</br>
+白话：我们想复用的代码的组织方式。</p>
+
+<figure class='code'><figcaption><span>Block Examples</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="o">].</span><span class="n">each</span> <span class="p">{</span> <span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="nb">puts</span> <span class="n">x</span><span class="o">*</span><span class="mi">2</span> <span class="p">}</span>   <span class="c1"># block is in between the curly braces</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="o">].</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">x</span><span class="o">|</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="n">x</span><span class="o">*</span><span class="mi">2</span>                    <span class="c1"># block is everything between the do and end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># Proc Examples             </span>
+</span><span class='line'><span class="nb">p</span> <span class="o">=</span> <span class="no">Proc</span><span class="o">.</span><span class="n">new</span> <span class="p">{</span> <span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="nb">puts</span> <span class="n">x</span><span class="o">*</span><span class="mi">2</span> <span class="p">}</span> <span class="c1">#p = proc{ |x| puts x*2 }</span>
+</span><span class='line'><span class="o">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="o">].</span><span class="n">each</span><span class="p">(</span><span class="o">&amp;</span><span class="nb">p</span><span class="p">)</span>              <span class="c1"># The &#39;&amp;&#39; tells ruby to turn the proc into a block </span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">proc</span> <span class="o">=</span> <span class="no">Proc</span><span class="o">.</span><span class="n">new</span> <span class="p">{</span> <span class="nb">puts</span> <span class="s2">&quot;Hello World&quot;</span> <span class="p">}</span>
+</span><span class='line'><span class="nb">proc</span><span class="o">.</span><span class="n">call</span>                     <span class="c1"># The body of the Proc object gets executed when called</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># Lambda Examples            </span>
+</span><span class='line'><span class="n">lam</span> <span class="o">=</span> <span class="nb">lambda</span> <span class="p">{</span> <span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="nb">puts</span> <span class="n">x</span><span class="o">*</span><span class="mi">2</span> <span class="p">}</span> <span class="c1">#lam = -&gt;(x) {puts x*2}</span>
+</span><span class='line'><span class="o">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="o">].</span><span class="n">each</span><span class="p">(</span><span class="o">&amp;</span><span class="n">lam</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">lam</span> <span class="o">=</span> <span class="nb">lambda</span> <span class="p">{</span> <span class="nb">puts</span> <span class="s2">&quot;Hello World&quot;</span> <span class="p">}</span>
+</span><span class='line'><span class="n">lam</span><span class="o">.</span><span class="n">call</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这些代码看起来非常相似，但其中有些细微的区别，我们接下来会讲述。</p>
+
+<h3>Block和Proc区别</h3>
+
+<h4>1.proc是对象，而block不是</h4>
+
+<p>一个proc是Proc类的实例。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">p</span> <span class="o">=</span> <span class="no">Proc</span><span class="o">.</span><span class="n">new</span> <span class="p">{</span> <span class="nb">puts</span> <span class="s2">&quot;Hello World&quot;</span> <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这使得我们可以在proc上调用它的方法，赋值给变量。proc也可以返回他们自己。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">p</span><span class="o">.</span><span class="n">call</span>  <span class="c1"># prints &#39;Hello World&#39;</span>
+</span><span class='line'><span class="nb">p</span><span class="o">.</span><span class="n">class</span> <span class="c1"># returns &#39;Proc&#39;</span>
+</span><span class='line'><span class="n">a</span> <span class="o">=</span> <span class="nb">p</span>   <span class="c1"># a now equals p, a Proc instance</span>
+</span><span class='line'><span class="nb">p</span>       <span class="c1"># returns a proc object &#39;#&lt;Proc:0x007f96b1a60eb0@(irb):46&gt;&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>相反，block只是方法调用语法的一部分。单独存在的block没有意义且只能存在于方法调用的参数列表里。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="p">{</span> <span class="nb">puts</span> <span class="s2">&quot;Hello World&quot;</span><span class="p">}</span>       <span class="c1"># syntax error  </span>
+</span><span class='line'><span class="n">a</span> <span class="o">=</span> <span class="p">{</span> <span class="nb">puts</span> <span class="s2">&quot;Hello World&quot;</span><span class="p">}</span>   <span class="c1"># syntax error</span>
+</span><span class='line'><span class="o">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="o">].</span><span class="n">each</span> <span class="p">{</span><span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="nb">puts</span> <span class="n">x</span><span class="o">*</span><span class="mi">2</span><span class="p">}</span> <span class="c1"># only works as part of the syntax of a method call</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>2.在参数列表中，block只能最多出现一次</h4>
+
+<p>相反，你可以向方法传递多个proc</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">multiple_procs</span><span class="p">(</span><span class="n">proc1</span><span class="p">,</span> <span class="n">proc2</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">proc1</span><span class="o">.</span><span class="n">call</span>
+</span><span class='line'>  <span class="n">proc2</span><span class="o">.</span><span class="n">call</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">a</span> <span class="o">=</span> <span class="no">Proc</span><span class="o">.</span><span class="n">new</span> <span class="p">{</span> <span class="nb">puts</span> <span class="s2">&quot;First proc&quot;</span> <span class="p">}</span>
+</span><span class='line'><span class="n">b</span> <span class="o">=</span> <span class="no">Proc</span><span class="o">.</span><span class="n">new</span> <span class="p">{</span> <span class="nb">puts</span> <span class="s2">&quot;Second proc&quot;</span> <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">multiple_procs</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Proc和Lambda的区别</h3>
+
+<p>在我深入他们区别之前，需要强调的是他们都是Proc对象。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">proc</span> <span class="o">=</span> <span class="no">Proc</span><span class="o">.</span><span class="n">new</span> <span class="p">{</span> <span class="nb">puts</span> <span class="s2">&quot;Hello world&quot;</span> <span class="p">}</span>
+</span><span class='line'><span class="n">lam</span> <span class="o">=</span> <span class="nb">lambda</span> <span class="p">{</span> <span class="nb">puts</span> <span class="s2">&quot;Hello World&quot;</span> <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">proc</span><span class="o">.</span><span class="n">class</span> <span class="c1"># returns &#39;Proc&#39;</span>
+</span><span class='line'><span class="n">lam</span><span class="o">.</span><span class="n">class</span>  <span class="c1"># returns &#39;Proc&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>然而lambda是一种不同的proc，对象返回的时候我们可以觉察到这细微的差别：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">proc</span>   <span class="c1"># returns &#39;#&lt;Proc:0x007f96b1032d30@(irb):75&gt;&#39;</span>
+</span><span class='line'><span class="n">lam</span>    <span class="c1"># returns &#39;&lt;Proc:0x007f96b1b41938@(irb):76 (lambda)&gt;&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>&lsquo;(lambda)&#8217;记号提醒我们他们很相似，但也有不同，下面就是一些关键的区别</p>
+
+<h4>1.Lambda检查参数的个数，而proc则不</h4>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">lam</span> <span class="o">=</span> <span class="nb">lambda</span> <span class="p">{</span> <span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="nb">puts</span> <span class="n">x</span> <span class="p">}</span>    <span class="c1"># creates a lambda that takes 1 argument</span>
+</span><span class='line'><span class="n">lam</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>                    <span class="c1"># prints out 2</span>
+</span><span class='line'><span class="n">lam</span><span class="o">.</span><span class="n">call</span>                       <span class="c1"># ArgumentError: wrong number of arguments (0 for 1)</span>
+</span><span class='line'><span class="n">lam</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>                <span class="c1"># ArgumentError: wrong number of arguments (3 for 1)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>相反,proc并不关心参数个数是否正确</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">proc</span> <span class="o">=</span> <span class="no">Proc</span><span class="o">.</span><span class="n">new</span> <span class="p">{</span> <span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="nb">puts</span> <span class="n">x</span> <span class="p">}</span> <span class="c1"># creates a proc that takes 1 argument</span>
+</span><span class='line'><span class="nb">proc</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>                   <span class="c1"># prints out 2</span>
+</span><span class='line'><span class="nb">proc</span><span class="o">.</span><span class="n">call</span>                      <span class="c1"># returns nil</span>
+</span><span class='line'><span class="nb">proc</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>               <span class="c1"># prints out 1 and forgets about the extra arguments</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>如上所示，在参数个数错误的情况下调用proc，并没有发生错误。如果proc需要一个参数，但是没有参数传入，这样的情况下proc会返回nil值；如果参数个数多余proc所需参数个数，则proc会忽略多余的参数。</p>
+
+<h4>2.Lambda和proc以不同方式处理&#8217;return&#8217;关键字</h4>
+
+<p>在lambda中的&#8217;return&#8217;返回到调用lambda的地方</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">lambda_test</span>
+</span><span class='line'>  <span class="n">lam</span> <span class="o">=</span> <span class="nb">lambda</span> <span class="p">{</span> <span class="k">return</span> <span class="p">}</span>
+</span><span class='line'>  <span class="n">lam</span><span class="o">.</span><span class="n">call</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="s2">&quot;Hello world&quot;</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">lambda_test</span>                 <span class="c1"># calling lambda_test prints &#39;Hello World&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>在proc中的&#8217;return&#8217;返回到调用包含proc调用的方法的地方</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">proc_test</span>
+</span><span class='line'>  <span class="nb">proc</span> <span class="o">=</span> <span class="no">Proc</span><span class="o">.</span><span class="n">new</span> <span class="p">{</span> <span class="k">return</span> <span class="p">}</span>
+</span><span class='line'>  <span class="nb">proc</span><span class="o">.</span><span class="n">call</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="s2">&quot;Hello world&quot;</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">proc_test</span>                 <span class="c1"># calling proc_test prints nothing</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>然而什么是闭包（closure）？</h3>
+
+<p>行话：带有引用环境的函数或者函数引用。不同于单纯的函数，闭包允许访问非本地变量，甚至在其作用域外。-维基百科
+</br>
+白话：类似一个手提箱，是一组这样的代码： 在其被打开（被调用）时，包含了所有当时打包的（创建的）。</p>
+
+<figure class='code'><figcaption><span>Example of Proc objects preserving local context</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">counter</span>
+</span><span class='line'>  <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span class='line'>  <span class="k">return</span> <span class="no">Proc</span><span class="o">.</span><span class="n">new</span> <span class="p">{</span> <span class="n">n</span><span class="o">+=</span> <span class="mi">1</span> <span class="p">}</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">a</span> <span class="o">=</span> <span class="n">counter</span>
+</span><span class='line'><span class="n">a</span><span class="o">.</span><span class="n">call</span>            <span class="c1"># returns 1</span>
+</span><span class='line'><span class="n">a</span><span class="o">.</span><span class="n">call</span>            <span class="c1"># returns 2</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">b</span> <span class="o">=</span> <span class="n">counter</span>
+</span><span class='line'><span class="n">b</span><span class="o">.</span><span class="n">call</span>            <span class="c1"># returns 1</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">a</span><span class="o">.</span><span class="n">call</span>            <span class="c1"># returns 3</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>背景部分1：Lambda微积分和匿名函数</h3>
+
+<p>Lambda得名于一种1930年代用于研究基础数学的微积分，Lambda微积分帮助简化可计算方程式的语意从而易于被学习。相关度最高的简化是使方程式匿名，也就是没有显式的基于方程式名字。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">sqsum</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="o">=</span> <span class="n">x</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="o">*</span><span class="n">y</span>  <span class="c1">#&lt;-- normal function</span>
+</span><span class='line'><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">x</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="o">*</span><span class="n">y</span> <span class="c1">#&lt;-- anonymous function</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>一般而言，在编程中，术语lambda指匿名函数，这些匿名函数在一些编程语言中很常见且是显式的（如javascript），而在另外一些语言中则比较隐秘（如Ruby）。</p>
+
+<h3>背景部分2：Proc名字的由来</h3>
+
+<p>Proc是procedure（程序）的缩写，既是用来执行特定任务而被打包成单元的一组指令。在不同的语言中，可能被称作function，routine，method或者unit。他们在一个程序中通常会被调用多次。</p>
+
+<h3>区别总结</h3>
+
+<p>1.proc是对象，而block不是</br>
+2.在参数列表中，最多只能有一个block</br>
+3.lambda检查参数个数，proc不检查</br>
+4.lambda和proc处理‘return’的方式不同</br></p>
+
+<p>原文:<a href="http://awaxman11.github.io/blog/2013/08/05/what-is-the-difference-between-a-block/">What Is the Difference Between a Block, a Proc, and a Lambda in Ruby?</a></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -577,6 +891,10 @@ Option 键 打开/前往 &nbsp; ⌘T 前往文件 ⌘⌃P 前往项目 ⌘R 前�
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/10/01/rubyde-blockyu-proc/">Ruby中Block,Proc,Lambda区别（译）</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/10/01/sublime-text-2-chang-yong-kuai-jie-jian-mac/">Sublime Text 2 常用快捷键(Mac)</a>
