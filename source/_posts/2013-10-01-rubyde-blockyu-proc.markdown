@@ -20,19 +20,29 @@ categories: [Ruby]
 end
 
 # Proc Examples             
-p = Proc.new { |x| puts x*2 } #p = proc{ |x| puts x*2 }
+p = Proc.new { |x| puts x*2 } 
 [1,2,3].each(&p)              # The '&' tells ruby to turn the proc into a block 
 
 proc = Proc.new { puts "Hello World" }
 proc.call                     # The body of the Proc object gets executed when called
 
 # Lambda Examples            
-lam = lambda { |x| puts x*2 } #lam = ->(x) {puts x*2}
+lam = lambda { |x| puts x*2 } 
 [1,2,3].each(&lam)
 
 lam = lambda { puts "Hello World" }
 lam.call
+
+# proc 和 lambda 的简写形式
+p = proc{ |x| puts x*2 }
+lam = ->(x) {puts x*2}
 ```
+
+{% blockquote rubymonk.com http://rubymonk.com/learning/books/4-ruby-primer-ascent/chapters/18-blocks/lessons/64-blocks-procs-lambdas Blocks, Procs, and Lambdas %}
+译注：
+-> 写法是 Kernel#lambda 的简短形式。
+Kernel#proc工厂方法和Proc.new是一样的。注意proc与 ->,yield不同,它是个方法。
+{% endblockquote %}
 
 这些代码看起来非常相似，但其中有些细微的区别，我们接下来会讲述。
 
