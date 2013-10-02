@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby | WildChild's Blog]]></title>
   <link href="http://wildchildEric.github.io/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://wildchildEric.github.io/"/>
-  <updated>2013-10-02T03:46:01+08:00</updated>
+  <updated>2013-10-03T00:50:20+08:00</updated>
   <id>http://wildchildEric.github.io/</id>
   <author>
     <name><![CDATA[Eric Li]]></name>
@@ -33,7 +33,7 @@ end</p>
 
 <h1>Proc Examples</h1>
 
-<p>p = Proc.new { |x| puts x<em>2 } #p = proc{ |x| puts x</em>2 }
+<p>p = Proc.new { |x| puts x*2 }
 [1,2,3].each(&amp;p)              # The &lsquo;&amp;&rsquo; tells ruby to turn the proc into a block</p>
 
 <p>proc = Proc.new { puts &ldquo;Hello World&rdquo; }
@@ -41,12 +41,19 @@ proc.call                     # The body of the Proc object gets executed when c
 
 <h1>Lambda Examples</h1>
 
-<p>lam = lambda { |x| puts x<em>2 } #lam = &ndash;>(x) {puts x</em>2}
+<p>lam = lambda { |x| puts x*2 }
 [1,2,3].each(&amp;lam)</p>
 
 <p>lam = lambda { puts &ldquo;Hello World&rdquo; }
-lam.call
+lam.call</p>
+
+<h1>proc 和 lambda 的简写形式</h1>
+
+<p>p = proc{ |x| puts x<em>2 }
+lam = &ndash;>(x) {puts x</em>2}
 ```</p>
+
+<p><blockquote><p>译注：<br/>&ndash;> 写法是 Kernel#lambda 的简短形式。<br/>Kernel#proc工厂方法和Proc.new是一样的。注意proc与 &ndash;>,yield不同,它是个方法。</p><footer><strong>rubymonk.com <a href="http://rubymonk.com/learning/books/4-ruby-primer-ascent/chapters/18-blocks/lessons/64-blocks-procs-lambdas">http://rubymonk.com/learning/books/4-ruby-primer-ascent/chapters/18-blocks/lessons/64-blocks-procs-lambdas</a> Blocks</strong> <cite>Procs</cite></footer></blockquote></p>
 
 <p>这些代码看起来非常相似，但其中有些细微的区别，我们接下来会讲述。</p>
 

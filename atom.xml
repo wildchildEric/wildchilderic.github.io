@@ -4,7 +4,7 @@
   <title><![CDATA[WildChild's Blog]]></title>
   <link href="http://wildchildEric.github.io/atom.xml" rel="self"/>
   <link href="http://wildchildEric.github.io/"/>
-  <updated>2013-10-02T03:46:01+08:00</updated>
+  <updated>2013-10-03T00:50:20+08:00</updated>
   <id>http://wildchildEric.github.io/</id>
   <author>
     <name><![CDATA[Eric Li]]></name>
@@ -43,6 +43,10 @@
 <span class='line-number'>17</span>
 <span class='line-number'>18</span>
 <span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="o">].</span><span class="n">each</span> <span class="p">{</span> <span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="nb">puts</span> <span class="n">x</span><span class="o">*</span><span class="mi">2</span> <span class="p">}</span>   <span class="c1"># block is in between the curly braces</span>
 </span><span class='line'>
 </span><span class='line'><span class="o">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="o">].</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">x</span><span class="o">|</span>
@@ -50,19 +54,28 @@
 </span><span class='line'><span class="k">end</span>
 </span><span class='line'>
 </span><span class='line'><span class="c1"># Proc Examples             </span>
-</span><span class='line'><span class="nb">p</span> <span class="o">=</span> <span class="no">Proc</span><span class="o">.</span><span class="n">new</span> <span class="p">{</span> <span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="nb">puts</span> <span class="n">x</span><span class="o">*</span><span class="mi">2</span> <span class="p">}</span> <span class="c1">#p = proc{ |x| puts x*2 }</span>
+</span><span class='line'><span class="nb">p</span> <span class="o">=</span> <span class="no">Proc</span><span class="o">.</span><span class="n">new</span> <span class="p">{</span> <span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="nb">puts</span> <span class="n">x</span><span class="o">*</span><span class="mi">2</span> <span class="p">}</span>
 </span><span class='line'><span class="o">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="o">].</span><span class="n">each</span><span class="p">(</span><span class="o">&amp;</span><span class="nb">p</span><span class="p">)</span>              <span class="c1"># The &#39;&amp;&#39; tells ruby to turn the proc into a block </span>
 </span><span class='line'>
 </span><span class='line'><span class="nb">proc</span> <span class="o">=</span> <span class="no">Proc</span><span class="o">.</span><span class="n">new</span> <span class="p">{</span> <span class="nb">puts</span> <span class="s2">&quot;Hello World&quot;</span> <span class="p">}</span>
 </span><span class='line'><span class="nb">proc</span><span class="o">.</span><span class="n">call</span>                     <span class="c1"># The body of the Proc object gets executed when called</span>
 </span><span class='line'>
 </span><span class='line'><span class="c1"># Lambda Examples            </span>
-</span><span class='line'><span class="n">lam</span> <span class="o">=</span> <span class="nb">lambda</span> <span class="p">{</span> <span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="nb">puts</span> <span class="n">x</span><span class="o">*</span><span class="mi">2</span> <span class="p">}</span> <span class="c1">#lam = -&gt;(x) {puts x*2}</span>
+</span><span class='line'><span class="n">lam</span> <span class="o">=</span> <span class="nb">lambda</span> <span class="p">{</span> <span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="nb">puts</span> <span class="n">x</span><span class="o">*</span><span class="mi">2</span> <span class="p">}</span>
 </span><span class='line'><span class="o">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="o">].</span><span class="n">each</span><span class="p">(</span><span class="o">&amp;</span><span class="n">lam</span><span class="p">)</span>
 </span><span class='line'>
 </span><span class='line'><span class="n">lam</span> <span class="o">=</span> <span class="nb">lambda</span> <span class="p">{</span> <span class="nb">puts</span> <span class="s2">&quot;Hello World&quot;</span> <span class="p">}</span>
 </span><span class='line'><span class="n">lam</span><span class="o">.</span><span class="n">call</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># proc 和 lambda 的简写形式</span>
+</span><span class='line'><span class="nb">p</span> <span class="o">=</span> <span class="nb">proc</span><span class="p">{</span> <span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="nb">puts</span> <span class="n">x</span><span class="o">*</span><span class="mi">2</span> <span class="p">}</span>
+</span><span class='line'><span class="n">lam</span> <span class="o">=</span> <span class="o">-&gt;</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="p">{</span><span class="nb">puts</span> <span class="n">x</span><span class="o">*</span><span class="mi">2</span><span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<blockquote><p>译注：<br/>-> 写法是 Kernel#lambda 的简短形式。<br/>Kernel#proc工厂方法和Proc.new是一样的。注意proc与 ->,yield不同,它是个方法。</p><footer><strong>rubymonk.com</strong> <cite><a href='http://rubymonk.com/learning/books/4-ruby-primer-ascent/chapters/18-blocks/lessons/64-blocks-procs-lambdas'>Blocks, Procs, and Lambdas</a></cite></footer></blockquote>
 
 
 <p>这些代码看起来非常相似，但其中有些细微的区别，我们接下来会讲述。</p>
